@@ -1,6 +1,6 @@
-# y
+# El Vestidos Profiling System
 
-> y
+> A Google App Script (GAS) Web Application
 
 ## Build Setup
 
