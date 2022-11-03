@@ -1,0 +1,34 @@
+.bg-dark-green {
+    background-color: #03453B;
+}
+
+.bg-dark-yellow {
+    background-color: #D5AE2D;
+}
+
+.bg-gradient {
+    background: rgb(3,69,59);
+    background: linear-gradient(267deg, rgba(3,69,59,1) 0%, rgba(213,174,45,1) 81%);
+}
+
+.bg-violet {
+    background-color: #220130;
+}
+
+.text-violet {
+    color: #220130;
+}
+
+.bg-violet-light {
+    background-color: #320e43;
+}
+
+.bg-gradient-violet {
+background: rgb(71,22,85);
+background: linear-gradient(267deg, rgba(71,22,85,1) 0%, rgba(98,47,113,1) 38%, rgba(179,128,197,1) 83%);
+}
+
+.bg-gradient-light {
+    background: rgb(180,159,192);
+background: linear-gradient(80deg, rgba(180,159,192,1) 0%, rgba(255,255,255,1) 50%);
+}
