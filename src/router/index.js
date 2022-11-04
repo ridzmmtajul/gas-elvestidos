@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Dashboard from '@/components/Dashboard'
-import StudentForm from '@/components/StudentForm'
+import Client from '@/components/Client'
 
 Vue.use(Router)
 
@@ -13,9 +13,9 @@ export default new Router({
       component: Dashboard
     },
     {
-      path: '/student',
-      name: 'StudentForm',
-      component: StudentForm
+      path: '/clients',
+      name: 'clients',
+      component: Client
     },
   ]
 })

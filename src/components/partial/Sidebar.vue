@@ -32,7 +32,7 @@ export default {
         return {
             options: [
                 { name: "Dashboard", icon: "fa-chart-area", route: "/" },
-                { name: "Students", icon: "fa-user", route: "/student" },
+                { name: "Clients", icon: "fa-user", route: "/clients" },
             ]
         }
     }

@@ -32,3 +32,12 @@ background: linear-gradient(267deg, rgba(71,22,85,1) 0%, rgba(98,47,113,1) 38%, 
     background: rgb(180,159,192);
 background: linear-gradient(80deg, rgba(180,159,192,1) 0%, rgba(255,255,255,1) 50%);
 }
+
+.pull-right {
+    float: right;
+}
+
+.container {
+    background-color: white;
+    height: 100vh;
+}
