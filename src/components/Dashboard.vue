@@ -22,7 +22,7 @@
                 </div>
               </div>
               <div class="flex-1 text-right md:text-center">
-                <h2 class="font-bold uppercase text-gray-600">Total Client</h2>
+                <h2 class="font-bold uppercase text-gray-600">Total Orders</h2>
                 <p class="font-bold text-3xl">
                   3249
                 </p>

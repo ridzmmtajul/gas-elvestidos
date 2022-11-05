@@ -15,8 +15,8 @@ function doGet(e) {
     return htmlOuput
 }
 
-function createClient(data){
+function createOrder(data){
     const ss = SpreadsheetApp.openById(SETTINGS.DBID);
-    const clientTable = ss.getSheetByName("clients");
-    clientTable.appendRow(data);
+    const orderTable = ss.getSheetByName("orders");
+    orderTable.appendRow(data);
 }
