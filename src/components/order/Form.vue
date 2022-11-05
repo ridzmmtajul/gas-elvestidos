@@ -1,5 +1,9 @@
 <template>
   <div>
+      <div class="loader-wrapper" v-if="isLoading">
+        <div class="loader left-1/3 md:left-2/4 top-72"></div>
+      </div>
+
     <div class="pt-3">
       <div
         class="flex rounded-tl-3xl bg-gradient-violet from-blue-900 to-gray-800 p-4 shadow text-2xl text-white"
@@ -38,8 +42,8 @@
                 </label>
                 <input
                   type="text"
-                  v-model="form.client_id"
-                  class="bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
+                  v-model="form.client_name"
+                  class="uppercase bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
                 />
               </div>
               <div class="md:flex mt-2">
@@ -50,18 +54,7 @@
                 <input
                   type="text"
                   v-model="form.unit"
-                  class="bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
-                />
-              </div>
-              <div class="md:flex mt-2">
-                <label
-                  class="w-1/4 flex-shrink-0 text-sm font-medium text-gray-900"
-                  >Organization:
-                </label>
-                <input
-                  type="text"
-                  v-model="form.organization"
-                  class="bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
+                  class="uppercase bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
                 />
               </div>
               <div class="md:flex mt-2">
@@ -70,9 +63,9 @@
                   >Contact Number:
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   v-model="form.contact_no"
-                  class="bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
+                  class="uppercase bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
                 />
               </div>
             </div>
@@ -84,8 +77,8 @@
                 </label>
                 <input
                   type="text"
-                  v-model="form.order_id"
-                  class="bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
+                  v-model="form.order"
+                  class="uppercase bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
                 />
               </div>
               <div class="md:flex mt-2">
@@ -94,9 +87,9 @@
                   >Deposit:
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   v-model="form.deposit"
-                  class="bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
+                  class="uppercase bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
                 />
               </div>
               <div class="md:flex mt-2">
@@ -105,9 +98,9 @@
                   >Balance:
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   v-model="form.balance"
-                  class="bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
+                  class="uppercase bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
                 />
               </div>
               <div class="md:flex mt-2">
@@ -115,12 +108,11 @@
                   class="w-1/4 flex-shrink-0 text-sm font-medium text-gray-900"
                   >Measured By:
                 </label>
-                <select v-model="form.staff_id" class="bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5">
-                  <option></option>
-                  <option>Tajul</option>
-                  <option>Ridzmahal</option>
-                  <option>Halid</option>
-                </select>
+                <input
+                  type="text"
+                  v-model="form.measured_by"
+                  class="uppercase bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
+                />
               </div>
             </div>
           </div>
@@ -186,27 +178,25 @@
           </div>
         </form>
       </div>
-
-      <div id="preview" :class="showPreview == false ? 'hidden' : ''">
-        <print-preview />
-      </div>
+      
     </div>
   </div>
 </template>
 
 <script>
-import PrintPreview from "./Preview.vue";
+import router from "./../../router/index"; 
 
 export default {
-  components: {
-    PrintPreview
-  },
   data() {
     return {
       form: {
-        first_name: "",
-        last_name: "",
-        middle_name: ""
+        client_name: "",
+        unit: "",
+        contact_no: "",
+        order: "",
+        deposit: "",
+        balance: "",
+        measured_by: "",
       },
       upper_measurement: [
         { value: "", label: "Front Length" },
@@ -239,15 +229,20 @@ export default {
         { value: "", label: "Buttom Circumference" }
       ],
       showPreview: false,
+      isLoading: false,
     };
   },
   methods: {
     onSubmit() {
   
       const data = [
-        this.form.first_name,
-        this.form.middle_name,
-        this.form.last_name,
+        this.form.client_name,
+        this.form.unit,
+        this.form.contact_no,
+        this.form.order,
+        this.form.deposit,
+        this.form.balance,
+        this.form.measured_by
       ];
 
       this.upper_measurement.forEach((unit) => {
@@ -258,12 +253,22 @@ export default {
         data.push(unit.value);
       })
 
-      // google.script.run.createOrder(data);
+      this.isLoading = true;
+
+      setTimeout( function() {
+        this.isLoading = false;		
+
+        router.push('/success-message');
+      }, 1000 );
+
       google.script.run
           .withSuccessHandler(function(){
-            swal("Success", "Record successfully saved", "success");
+            this.isLoading = false;
+            router.push('/success-message');
           })
           .withFailureHandler(function() {
+            this.isLoading = false; 
+
             swal("Something went wrong", "Please check your internet connection", "error");
           })
           .createOrder(data);

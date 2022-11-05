@@ -8,6 +8,8 @@ import './input.css'
 import VueHtmlToPaper from 'vue-html-to-paper';
 Vue.use(VueHtmlToPaper);
 
+window.bus = new Vue();
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

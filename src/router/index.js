@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Dashboard from '@/components/Dashboard'
 import Order from '@/components/Order'
 import OrderForm from '@/components/order/Form'
+import SuccessMessage from '@/components/order/Success'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/order-form',
       name: 'order-form',
       component: OrderForm
+    },
+    {
+      path: '/success-message',
+      name: 'success-message',
+      component: SuccessMessage
     },
   ]
 })

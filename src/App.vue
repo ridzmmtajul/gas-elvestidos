@@ -6,8 +6,8 @@
         <section class="grow md:pr-5">
           <a href="/" aria-label="Home" class="inline-block md:hidden mt-5">
             <span class="logo">
-              <img src="./assets/logo7.png" alt="" />
-              <!-- <img src="http://drive.google.com/uc?export=view&id=1bmbHItMxis_-jfQEgmdxsjLPEC6NBx20" alt="" class="logo"> -->
+              <!-- <img src="./assets/logo7.png" alt="" /> -->
+              <img src="http://drive.google.com/uc?export=view&id=1j2JOLTDE-qYAd_8zN5HupgEB3sopMW5s" alt="" class="logo">
             </span>
           </a>
           <div
