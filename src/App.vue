@@ -4,7 +4,7 @@
     <main>
       <div class="flex flex-col md:flex-row">
         <Sidebar />
-        <section class="grow pr-5">
+        <section class="grow md:pr-5">
           <div
             id="main"
             class="main-content flex-1 mt-12 md:mt-2 pb-24 md:pb-5"

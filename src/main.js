@@ -5,8 +5,8 @@ import App from './App'
 import router from './router'
 import './input.css'
 
-import swal from 'sweetalert2';
-window.Swal = swal;
+import VueHtmlToPaper from 'vue-html-to-paper';
+Vue.use(VueHtmlToPaper);
 
 Vue.config.productionTip = false
 

@@ -11,8 +11,8 @@
         >
           <a href="#" aria-label="Home">
             <span class="logo">
-              <!-- <img src="../../assets/logo-white.png" alt="" /> -->
-              <img src="http://drive.google.com/uc?export=view&id=1RtEaPKW8xK3qpffDBrSvqxyX3hVEIsAX" alt="" class="logo">
+              <img src="../../assets/logo-white.png" alt="" />
+              <!-- <img src="http://drive.google.com/uc?export=view&id=1RtEaPKW8xK3qpffDBrSvqxyX3hVEIsAX" alt="" class="logo"> -->
             </span>
           </a>
         </div>
