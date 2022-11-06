@@ -236,13 +236,13 @@ export default {
     onSubmit() {
   
       const data = [
-        this.form.client_name,
+        this.convertUpperCase(this.form.client_name),
         this.form.unit,
         this.form.contact_no,
         this.form.order,
         this.form.deposit,
         this.form.balance,
-        this.form.measured_by
+        this.convertUpperCase(this.form.measured_by)
       ];
 
       this.upper_measurement.forEach((unit) => {
@@ -254,17 +254,19 @@ export default {
       })
 
       this.isLoading = true;
+      localStorage.setItem('data', data);
+      console.log(data);
 
       setTimeout( function() {
         this.isLoading = false;		
 
-        router.push('/success-message');
+        router.push('/print-preview');
       }, 1000 );
 
       google.script.run
           .withSuccessHandler(function(){
             this.isLoading = false;
-            router.push('/success-message');
+            router.push('/print-preview');
           })
           .withFailureHandler(function() {
             this.isLoading = false; 
@@ -273,9 +275,9 @@ export default {
           })
           .createOrder(data);
     },
-    onPrint() {
-      // this.$htmlToPaper("preview");
-      window.print();
+    convertUpperCase(str){
+      const word = str.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+      return word;
     }
   }
 };

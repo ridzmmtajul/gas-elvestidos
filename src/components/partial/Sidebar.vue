@@ -1,7 +1,7 @@
 <template>
   <nav aria-label="alternative nav">
     <div
-      class="bg-violet shadow-xl h-20 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-60 content-center"
+      class="bg-violet shadow-xl h-20 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-60 content-center dont-print"
     >
       <div
         class="md:mt-5 md:fixed md:left-0 md:top-0 p-3 content-center md:content-start text-left justify-between"

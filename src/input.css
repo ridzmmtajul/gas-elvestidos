@@ -66,3 +66,15 @@ background: linear-gradient(80deg, rgba(180,159,192,1) 0%, rgba(255,255,255,1) 5
     top: 0;
     left: 0;
 }
+
+@media print {
+	.dont-print  {
+		display: none;
+	}
+	.print  {
+		display: block;
+        margin-top: -50px;
+        height: auto;
+        margin-bottom: -100px;
+	}
+}
