@@ -1,28 +1,34 @@
 <template>
   <div>
     <div class="pt-3 dont-print">
-      <div
-        class="flex rounded-tl-3xl bg-gradient-violet from-blue-900 to-gray-800 p-4 shadow text-2xl text-white"
-      >
-        <h1 class="font-bold pl-2 text-left ml-2 grow text-sm mt-5">
-          <i class="fas fa-check-circle mr-2"></i>Record sucessfully saved,
-          showing the print preview below
-        </h1>
-        <button @click="onPrint()">
+      <div class="rounded-3xl container">
+        <div class="col-span-2 ml-16 pt-10">
+          <p class="font-bold text-xl text-left">Order Code: <span class="text-red-500">{{ data[0] }}</span></p>
+          <qr-code :text="data[0]" :size="250"></qr-code>
+        </div>
+        <div class="flex mt-10 ml-16 text-center">
+          <button type="button" @click="onPrint()">
           <span
             class="block text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center pull-right"
-            type="button"
           >
             <i class="fas fa-print mr-2"></i>
 
             PRINT
           </span>
         </button>
+        <router-link to="/order-form">
+            <span
+              class="text-green-700 border border-green-700 hover:text-white hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 mr-2 py-2.5 text-center pull-right"
+            >
+              ADD NEW
+            </span>
+          </router-link>
+        </div>
       </div>
     </div>
 
     <div class="container p-10 print" style="height:auto">
-      <div class="md:grid md:grid-cols-5">
+      <div class="grid grid-cols-5">
         <div class="col-span-3">
           <div class="flex group">
             <span class="flex-shrink-0 mr-2">Client Name: </span>
@@ -73,11 +79,11 @@
         </div>
       </div>
 
-      <div class="md:grid md:grid-cols-5 mt-5">
+      <div class="grid grid-cols-5 mt-5">
         <div class="col-span-3">
           <p class="font-primary-bold text-xl">UPPER</p>
           <template v-for="(unit, i) in upper_measurement">
-            <div class="flex group md:w-80">
+            <div class="flex group w-80">
               <span class="flex-shrink-0 mr-2"
                 >{{ i + 1 }}. {{ unit.label }}:
               </span>
@@ -90,7 +96,7 @@
         <div class="col-span-2">
           <p class="font-primary-bold text-xl">LOWER</p>
           <template v-for="(unit, i) in lower_measurement">
-            <div class="flex group md:w-80">
+            <div class="flex group w-80">
               <span class="flex-shrink-0 mr-2"
                 >{{ i + 1 }}. {{ unit.label }}:
               </span>
@@ -102,7 +108,7 @@
         </div>
       </div>
 
-      <div class="md:grid md:grid-cols-5">
+      <div class="grid grid-cols-5">
         <div class="col-span-3 text-left text-xs mt-5">
           <p>
             This is to testify that the measurements written herein are
@@ -124,7 +130,7 @@
             alteration
           </p>
         </div>
-        <div class="md:w-80 mt-10">
+        <div class="w-80 mt-10">
           <div class="flex group">
             <span class="flex-shrink-0 mr-2">Client Signature: </span>
             <div class="grow text-left border-b border-black"></div>
@@ -175,7 +181,6 @@ export default {
         { value: "", label: "Knee Height" },
         { value: "", label: "Buttom Circumference" }
       ],
-      value: "https://example.com",
     };
   },
   created() {
@@ -184,7 +189,6 @@ export default {
   },
   methods: {
     onPrint() {
-      // this.$htmlToPaper("preview");
       window.print();
     }
   }

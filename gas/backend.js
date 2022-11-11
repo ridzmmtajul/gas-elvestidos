@@ -17,7 +17,7 @@ function doGet(e) {
     .setTitle("El Vestidos Profiling System")
     .setSandboxMode(HtmlService.SandboxMode.IFRAME)
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
-    .addMetaTag("viewport", "width=device-width,initial-scale=1");
+    .addMetaTag('viewport', 'width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;');
 }
 
 function getLastNum(sheet_name) {
@@ -63,6 +63,30 @@ function getTotalOrders() {
 
   return Alast;
 }
+
+function checkOrderCode(qrcode) {
+    const ss = SpreadsheetApp.openById(SETTINGS.DBID);
+    const sheet = ss.getSheetByName("orders");
+    var column = 1; //column Index   
+    var columnValues = sheet.getRange(3, column, sheet.getLastRow()).getValues(); //1st is header row
+    var searchResult = columnValues.findIndex(qrcode); //Row Index - 3
+
+    if(searchResult != -1)
+    {
+        //searchResult + 3 is row index.
+      return sheet.getRange(searchResult + 3, 1);
+    }else{
+      return false
+    }
+}
+
+Array.prototype.findIndex = function(search){
+  if(search == "") return false;
+  for (var i=0; i<this.length; i++)
+    if (this[i] == search) return i;
+
+  return -1;
+} 
 
 function getDB() {
   let dbOrders = new DBOrders();

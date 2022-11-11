@@ -4,6 +4,7 @@ import Dashboard from '@/components/Dashboard'
 import Order from '@/components/Order'
 import OrderForm from '@/components/order/Form'
 import PrintPreview from '@/components/order/Preview'
+import ScanQR from '@/components/order/ScanQR'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/print-preview',
       name: 'print-preview',
       component: PrintPreview
+    },
+    {
+      path: '/scan-qrcode',
+      name: 'scan-qrcode',
+      component: ScanQR
     },
   ]
 })

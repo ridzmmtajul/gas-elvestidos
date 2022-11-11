@@ -9,7 +9,7 @@
         class="flex rounded-tl-3xl bg-gradient-violet from-blue-900 to-gray-800 p-4 shadow text-2xl text-white"
       >
         <h1 class="font-bold pl-2 text-left ml-2 grow">New Order</h1>
-        <div class="flex flex-row-reverse flex-grow hidden md:inline-block">
+        <div class="flex flex-row-reverse flex-grow">
           <button
             type="button"
             @click="onSubmit"
@@ -20,8 +20,7 @@
           </button>
           <router-link to="/orders">
             <span
-              type="button"
-              class="text-purple-700 border border-purple-700 hover:text-white hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 mr-2 py-2.5 text-center pull-right"
+              class="text-purple-700 border border-purple-700 hover:text-white hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 mr-2 py-2.5 text-center pull-right hidden md:inline-block"
             >
               Cancel
             </span>
@@ -32,7 +31,7 @@
 
     <div class="p-2 md:p-10 bg-gradient-light">
       <div class="px-6 lg:px-8 text-left">
-        <form class="space-y-6">
+        <form class="space-y-6" @submit.prevent="onSubmit">
           <div class="md:grid md:grid-cols-5">
             <div class="col-span-3">
               <div class="md:flex mt-2">
@@ -129,7 +128,7 @@
                     class="flex items-center border-b border-teal-500 group-hover:border-purple-700"
                   >
                     <input
-                      type="text"
+                      type="number"
                       v-model="unit.value"
                       class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:ring-0 focus:text-black text-center md:text-left"
                     />
@@ -137,7 +136,7 @@
                 </div>
               </template>
             </div>
-            <div class="col-span-2">
+            <div class="col-span-2 mb-5">
               <p class="font-bold text-center pb-2">LOWER</p>
               <template v-for="(unit, i) in lower_measurement">
                 <div class="flex group">
@@ -149,7 +148,7 @@
                     class="flex items-center border-b border-teal-500 group-hover:border-purple-700"
                   >
                     <input
-                      type="text"
+                      type="number"
                       v-model="unit.value"
                       class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none focus:ring-0 focus:text-black text-center md:text-left"
                     />
@@ -157,24 +156,6 @@
                 </div>
               </template>
             </div>
-          </div>
-
-          <div class="flex flex-row-reverse flex-grow inline-block md:hidden">
-            <button
-              type="text"
-              @click="onSubmit"
-              class="text-white bg-purple-700 border border-purple-700 hover:text-white hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 mr-2 py-2.5 text-center pull-right"
-            >
-              Save
-            </button>
-            <router-link to="/orders">
-              <span
-                type="button"
-                class="text-purple-700 pt-4 h-full border border-purple-700 hover:text-white hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 mr-2 py-2.5 text-center pull-right"
-              >
-                Cancel
-              </span>
-            </router-link>
           </div>
         </form>
       </div>
