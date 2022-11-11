@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <div class="container p-10">
+    <div class="container md:p-10 pt-5">
 
         <order-table :data="data"/>
     </div>

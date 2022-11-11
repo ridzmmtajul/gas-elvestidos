@@ -68,7 +68,7 @@
           </div>
         </div>
         <div class="col-span-2 ml-32">
-          <p class="font-bold text-xl text-left">No. <span class="text-red-500">{{ data[0] }}</span></p>
+          <p class="font-bold text-sm text-left">Code: <span class="text-red-500">{{ data[0] }}</span></p>
           <qr-code :text="data[0]" :size="120"></qr-code>
         </div>
       </div>

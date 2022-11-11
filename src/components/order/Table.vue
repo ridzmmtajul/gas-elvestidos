@@ -6,7 +6,7 @@
       >
         <tr>
           <th scope="col" class="py-3 px-6">
-            Order#
+            Order Code
           </th>
           <th scope="col" class="py-3 px-6">
             Client Name
