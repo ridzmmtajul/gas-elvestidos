@@ -24,7 +24,7 @@
               <div class="flex-1 text-right md:text-center">
                 <h2 class="font-bold uppercase text-gray-600">Total Orders</h2>
                 <p class="font-bold text-3xl">
-                  3249
+                  {{ total_orders }}
                 </p>
               </div>
             </div>
@@ -35,3 +35,35 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      total_orders: 0,
+    }
+  },
+  methods:{
+    getTotalOrders(){
+      // google.script.run
+      //   .withSuccessHandler(function(total){
+      //     localStorage.setItem('total_order', total);
+      //   })
+      //   .withFailureHandler(function() {
+      //     swal("Something went wrong", "Please check your internet connection", "error");
+      //   })
+      //   .getTotalOrders();
+
+        axios.get(`https://script.google.com/macros/s/1gPkixDSbCfByADHAUxbWFQ3WZlzW6BUqtxtqNk45I-w/exec?
+text=${this.text}&source=${this.formerLang}&target=${this.targetLang}`)
+.then(response => (console.log(response)))
+    }
+  },
+  created() {
+    this.getTotalOrders();
+    this.total_orders = localStorage.getItem('total_order');
+  }
+}
+</script>

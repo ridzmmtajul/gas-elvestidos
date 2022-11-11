@@ -33,20 +33,31 @@ function getLastNum(sheet_name){
 }
 
 function createOrder(data){
-    const id = getLastNum("orders").toFixed(0);
+  const id = getLastNum("orders").toFixed(0);
+  const order = [id, ...data];
 
-    const ss = SpreadsheetApp.openById(SETTINGS.DBID);
-    const orderTable = ss.getSheetByName("orders");
-    orderTable.appendRow([id, ...data]);
+  const ss = SpreadsheetApp.openById(SETTINGS.DBID);
+  const orderTable = ss.getSheetByName("orders");
+  orderTable.appendRow(order);
+
+  return order;
 }
 
-function getStaffList(){
+function getOrderList(){
   const ss = SpreadsheetApp.openById(SETTINGS.DBID);
-  const sheet = ss.getSheetByName("staffs");
-  var Avals = sheet.getRange("B:B").getValues();
+  const sheet = ss.getSheetByName("orders");
+  var Avals = sheet.getRange("A:A").getValues();
   var Alast = Avals.filter(String).length;
 
-  const staffs = sheet.getRange("B2:D"+Alast).getValues();
-  
-  return staffs;
+  const orders = sheet.getRange("A3:AH"+Alast).getValues();
+  return orders;
+}
+
+function getTotalOrders(){
+  const ss = SpreadsheetApp.openById(SETTINGS.DBID);
+  const sheet = ss.getSheetByName("orders");
+  var Avals = sheet.getRange("A3:A").getValues();
+  var Alast = Avals.filter(String).length;
+
+  return Alast;
 }
