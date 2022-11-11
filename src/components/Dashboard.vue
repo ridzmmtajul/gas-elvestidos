@@ -15,6 +15,7 @@
           <div
             class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5"
           >
+          <router-link to="/orders">
             <div class="flex flex-row items-center">
               <div class="flex-shrink pr-4">
                 <div class="rounded-full p-5 bg-green-600">
@@ -24,10 +25,11 @@
               <div class="flex-1 text-right md:text-center">
                 <h2 class="font-bold uppercase text-gray-600">Total Orders</h2>
                 <p class="font-bold text-3xl">
-                  3249
+                  {{ data.length | 0 }}
                 </p>
               </div>
             </div>
+          </router-link>
           </div>
           <!--/Metric Card-->
         </div>
@@ -35,3 +37,14 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ["data"],
+  data() {
+    return {
+      data: [],
+    }
+  },
+}
+</script>

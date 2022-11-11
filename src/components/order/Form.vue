@@ -255,19 +255,14 @@ export default {
 
       this.isLoading = true;
       localStorage.setItem('data', data);
-      console.log(data);
-
+      
       setTimeout( function() {
         this.isLoading = false;		
 
         router.push('/print-preview');
-      }, 1000 );
+      }, 2000 );
 
       google.script.run
-          .withSuccessHandler(function(){
-            this.isLoading = false;
-            router.push('/print-preview');
-          })
           .withFailureHandler(function() {
             this.isLoading = false; 
 

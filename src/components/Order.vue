@@ -17,7 +17,7 @@
 
     <div class="container p-10">
 
-        <order-table />
+        <order-table :data="data"/>
     </div>
 </div>
 </template>
@@ -26,8 +26,9 @@
 import OrderTable from './order/Table.vue';
 
 export default {
-    components: {
-        OrderTable,
-    },
+  props:["data"],
+  components: {
+      OrderTable,
+  },
 }
 </script>

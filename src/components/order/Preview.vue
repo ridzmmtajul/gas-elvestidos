@@ -22,7 +22,7 @@
     </div>
 
     <div class="container p-10 print" style="height:auto">
-      <div class="grid grid-cols-5">
+      <div class="md:grid md:grid-cols-5">
         <div class="col-span-3">
           <div class="flex group">
             <span class="flex-shrink-0 mr-2">Client Name: </span>
@@ -68,16 +68,16 @@
           </div>
         </div>
         <div class="col-span-2 ml-32">
-          <p class="font-bold text-xl text-left">No. <span class="text-red-500">5045</span></p>
-          <qr-code text="Text to encode" :size="120"></qr-code>
+          <p class="font-bold text-xl text-left">No. <span class="text-red-500">{{ data[0] }}</span></p>
+          <qr-code :text="data[0]" :size="120"></qr-code>
         </div>
       </div>
 
-      <div class="grid grid-cols-5 mt-5">
+      <div class="md:grid md:grid-cols-5 mt-5">
         <div class="col-span-3">
           <p class="font-primary-bold text-xl">UPPER</p>
           <template v-for="(unit, i) in upper_measurement">
-            <div class="flex group w-80">
+            <div class="flex group md:w-80">
               <span class="flex-shrink-0 mr-2"
                 >{{ i + 1 }}. {{ unit.label }}:
               </span>
@@ -90,7 +90,7 @@
         <div class="col-span-2">
           <p class="font-primary-bold text-xl">LOWER</p>
           <template v-for="(unit, i) in lower_measurement">
-            <div class="flex group w-80">
+            <div class="flex group md:w-80">
               <span class="flex-shrink-0 mr-2"
                 >{{ i + 1 }}. {{ unit.label }}:
               </span>
@@ -102,7 +102,7 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-5">
+      <div class="md:grid md:grid-cols-5">
         <div class="col-span-3 text-left text-xs mt-5">
           <p>
             This is to testify that the measurements written herein are
@@ -124,7 +124,7 @@
             alteration
           </p>
         </div>
-        <div class="w-80 mt-10">
+        <div class="md:w-80 mt-10">
           <div class="flex group">
             <span class="flex-shrink-0 mr-2">Client Signature: </span>
             <div class="grow text-left border-b border-black"></div>
