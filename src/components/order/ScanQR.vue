@@ -7,6 +7,7 @@
 
 <script>
 import { StreamBarcodeReader } from "vue-barcode-reader";
+import router from "./../../router/index"; 
 
 export default {
     components: {
@@ -15,10 +16,8 @@ export default {
     methods: {
         onDecode(qrcode) {
             this.runGoogleScript("checkOrderCode", qrcode).then(data => {
-                console.log(data);
                 if(data){
-                    localStorage.setItem('data', data);
-                    router.push('/order-detail');
+                    router.push({ path: 'order-details', query: { order: data } })
                 }else{
                     swal("Error", "Ooops, QR code was unrecognized", "error");
                 }

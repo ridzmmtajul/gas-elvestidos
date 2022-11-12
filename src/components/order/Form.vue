@@ -37,12 +37,14 @@
               <div class="md:flex mt-2">
                 <label
                   class="w-1/4 flex-shrink-0 text-sm font-medium text-gray-900"
-                  >Client name:
+                  >Client name: <span class="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   v-model="form.client_name"
+                  @focus="hideSidebar()"
                   class="uppercase bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
+                  required
                 />
               </div>
               <div class="md:flex mt-2">
@@ -243,6 +245,8 @@ export default {
           this.isLoading = false; 
           localStorage.setItem('data', data);
           router.push('/print-preview');
+
+          this.showSidebar();
         }).catch(error => {
           swal("Error", "Sorry, something went wrong", "error");
 
@@ -268,7 +272,23 @@ export default {
         var result = '';
         for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
         return result;
-    }
+    },
+    hideSidebar(){
+      
+      if (this.isMobile()) {
+        document.getElementById("sidenav").style.display = "none";
+      }
+    },
+    isMobile(){
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return true
+      } else {
+        return false
+      }
+    },
+    showSidebar(){
+      document.getElementById("sidenav").style.display = "block";
+    },
   }
 };
 </script>

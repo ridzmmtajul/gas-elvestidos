@@ -2,7 +2,7 @@
 
   
     class Order{
-      constructor(OrderNo,client_name,unit,contact_num,order,deposit,balance,measured_by, u_front_length, u_back_length, u_shoulder, u_arm_hole, u_uag, u_lag, u_sleeve_length, u_neck, u_chest, u_waist, u_hip1, u_hip2, u_fig, u_bust_distance, u_apex_h, u_shoulder_distance, u_shoulder_blade_height, l_waist, l_hip, l_length, l_inner_seam, l_crotch, l_leg_dir, l_knee_cir, l_knee_height, l_buttom_cir){
+      constructor(OrderNo,client_name,unit,contact_num,order,deposit,balance,measured_by, u_front_length, u_back_length, u_shoulder, u_arm_hole, u_uag, u_lag, u_sleeve_length, u_neck, u_chest, u_waist, u_hip1, u_hip2, u_fig, u_bust_distance, u_apex_h, u_shoulder_distance, u_shoulder_blade_height, l_waist, l_hip, l_length, l_inner_seam, l_crotch, l_leg_dir, l_knee_cir, l_knee_height, l_buttom_cir, status){
         this.OrderNo = OrderNo;
         this.client_name = client_name;
         this.unit = unit;
@@ -37,6 +37,7 @@
         this.l_knee_cir = l_knee_cir;
         this.l_knee_height = l_knee_height;
         this.l_buttom_cir = l_buttom_cir;
+        this.status = status;
       }
     }
   

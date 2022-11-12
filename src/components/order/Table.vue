@@ -23,6 +23,9 @@
           <th scope="col" class="py-3 px-6">
             Measured By
           </th>
+          <th scope="col" class="py-3 px-6">
+            Status
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -34,6 +37,7 @@
           <td class="py-4 px-6">{{ order.contact_num }}</td>
           <td class="py-4 px-6">{{ order.order }}</td>
           <td class="py-4 px-6">{{ order.measured_by }}</td>
+          <td class="py-4 px-6">{{ order.status }}</td>
         </tr>
       </tbody>
     </table>

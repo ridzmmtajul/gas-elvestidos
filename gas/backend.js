@@ -65,28 +65,12 @@ function getTotalOrders() {
 }
 
 function checkOrderCode(qrcode) {
-    const ss = SpreadsheetApp.openById(SETTINGS.DBID);
-    const sheet = ss.getSheetByName("orders");
-    var column = 1; //column Index   
-    var columnValues = sheet.getRange(3, column, sheet.getLastRow()).getValues(); //1st is header row
-    var searchResult = columnValues.findIndex(qrcode); //Row Index - 3
+  const orders = getDB();
+  
+  let order = orders.find(order => order.OrderNo === qrcode);
 
-    if(searchResult != -1)
-    {
-        //searchResult + 3 is row index.
-      return sheet.getRange(searchResult + 3, 1);
-    }else{
-      return false
-    }
+  return order;
 }
-
-Array.prototype.findIndex = function(search){
-  if(search == "") return false;
-  for (var i=0; i<this.length; i++)
-    if (this[i] == search) return i;
-
-  return -1;
-} 
 
 function getDB() {
   let dbOrders = new DBOrders();
@@ -129,7 +113,8 @@ class Order {
     l_leg_dir,
     l_knee_cir,
     l_knee_height,
-    l_buttom_cir
+    l_buttom_cir,
+    status
   ) {
     this.OrderNo = OrderNo;
     this.client_name = client_name;
@@ -165,6 +150,7 @@ class Order {
     this.l_knee_cir = l_knee_cir;
     this.l_knee_height = l_knee_height;
     this.l_buttom_cir = l_buttom_cir;
+    this.status = status;
   }
 }
 
@@ -218,7 +204,8 @@ class DBOrders {
         l_leg_dir: item[30],
         l_knee_cir: item[31],
         l_knee_height: item[32],
-        l_buttom_cir: item[33]
+        l_buttom_cir: item[33],
+        status: item[34],
       };
 
       orders.push(item);

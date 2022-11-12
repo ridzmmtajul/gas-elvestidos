@@ -1,6 +1,7 @@
 <template>
   <nav aria-label="alternative nav">
     <div
+      id="sidenav"
       class="bg-violet shadow-xl h-20 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-60 content-center dont-print"
     >
       <div

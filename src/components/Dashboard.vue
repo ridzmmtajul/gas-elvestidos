@@ -17,7 +17,7 @@
           <router-link to="/orders">
             <div class="flex flex-row items-center">
               <div class="flex-shrink pr-4">
-                <div class="rounded-full p-5 bg-green-600">
+                <div class="rounded-full p-5 bg-green-600 px-6">
                   <i class="fa fa-user fa-2x fa-inverse"></i>
                 </div>
               </div>
@@ -40,7 +40,7 @@
           <router-link to="/scan-qrcode">
             <div class="flex flex-row items-center">
               <div class="flex-shrink pr-4">
-                <div class="rounded-full p-5 bg-yellow-600">
+                <div class="rounded-full p-5 bg-yellow-600 px-6">
                   <i class="fa fa-qrcode fa-2x fa-inverse"></i>
                 </div>
               </div>

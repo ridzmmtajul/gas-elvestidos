@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Dashboard from '@/components/Dashboard'
 import Order from '@/components/Order'
 import OrderForm from '@/components/order/Form'
+import OrderDetails from '@/components/order/Details'
 import PrintPreview from '@/components/order/Preview'
 import ScanQR from '@/components/order/ScanQR'
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/scan-qrcode',
       name: 'scan-qrcode',
       component: ScanQR
+    },
+    {
+      path: '/order-details',
+      name: 'order-details',
+      component: OrderDetails
     },
   ]
 })
