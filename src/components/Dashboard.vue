@@ -24,7 +24,7 @@
               <div class="flex-1 text-right md:text-center">
                 <h2 class="font-bold uppercase text-gray-600">Total Orders</h2>
                 <p class="font-bold text-3xl">
-                  {{ data.length | 0 }}
+                  {{ orders.length | 0 }}
                 </p>
               </div>
             </div>
@@ -62,8 +62,36 @@ export default {
   props: ["data"],
   data() {
     return {
-      data: [],
+      orders: [],
     }
   },
+  created(){
+    this.orders = this.data;
+  },
+  methods: {
+    getOrders(){
+      this.runGoogleScript("getOrders").then(data => {
+        this.orders = data;
+      }).catch(error => {
+        swal("Error", "Sorry, something went wrong", "error");
+
+        console.log(error);
+      });
+    },
+    runGoogleScript(serverFunctionName, order){
+      return new Promise((resolve, reject) => {
+        google.script.run
+          .withSuccessHandler(data => {
+            resolve(data);
+          })
+          .withFailureHandler(error => {
+            reject(error);
+          })[serverFunctionName](order);
+      });
+    },
+  },
+  mounted(){
+    this.getOrders();
+  }
 }
 </script>

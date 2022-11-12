@@ -50,13 +50,13 @@
               <div class="md:flex mt-2">
                 <label
                   class="w-1/4 flex-shrink-0 text-sm font-medium text-gray-900"
-                  >Unit:
+                  >Unit: <span class="text-red-500">*</span>
                 </label>
-                <input
-                  type="text"
-                  v-model="form.unit"
-                  class="uppercase bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
-                />
+                <select class="bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5" 
+                v-model="form.unit">
+                  <option selected disabled></option>
+                  <option v-for="unit in units" :value="unit[0]">{{ unit[0] }}</option>
+                </select>
               </div>
               <div class="md:flex mt-2">
                 <label
@@ -109,11 +109,11 @@
                   class="w-1/4 flex-shrink-0 text-sm font-medium text-gray-900"
                   >Measured By:
                 </label>
-                <input
-                  type="text"
-                  v-model="form.measured_by"
-                  class="uppercase bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5"
-                />
+                <select class="bg-transparent md:mr-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-700 focus:border-blue-500 block w-full p-2.5" 
+                v-model="form.measured_by">
+                  <option selected disabled></option>
+                  <option v-for="name in staff" :value="name[0]">{{ name[0] }}</option>
+                </select>
               </div>
             </div>
           </div>
@@ -213,9 +213,29 @@ export default {
       ],
       showPreview: false,
       isLoading: false,
+      staff: null,
+      units: null,
     };
   },
   methods: {
+    getStaff(){
+      this.runGoogleScript("getStaff").then(data => {
+        this.staff = data;
+        }).catch(error => {
+          swal("Error", "Sorry, something went wrong", "error");
+
+          console.log(error);
+        });
+    },
+    getUnits(){
+      this.runGoogleScript("getUnits").then(data => {
+        this.units = data;
+        }).catch(error => {
+          swal("Error", "Sorry, something went wrong", "error");
+
+          console.log(error);
+        });
+    },
     onSubmit() {
       var uniqueId = this.randomString(9, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
@@ -240,13 +260,18 @@ export default {
 
       this.isLoading = true;
       this.runGoogleScript("createOrder", order).then(data => {
+        if(data){
           swal("Success", "Record successfully saved", "success");
           
-          this.isLoading = false; 
           localStorage.setItem('data', data);
           router.push('/print-preview');
+          this.isLoading = false; 
 
           this.showSidebar();
+        }else{
+          this.isLoading = false; 
+          swal("Oops", "Order already added", "error");
+        }
         }).catch(error => {
           swal("Error", "Sorry, something went wrong", "error");
 
@@ -289,6 +314,10 @@ export default {
     showSidebar(){
       document.getElementById("sidenav").style.display = "block";
     },
+  },
+  mounted(){
+    this.getStaff();
+    this.getUnits();
   }
 };
 </script>

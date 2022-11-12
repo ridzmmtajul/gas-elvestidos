@@ -14,7 +14,7 @@
           </span>
         </a>
         <ul
-          class="list-reset flex flex-row md:flex-col md:mt-10 pt-3 md:py-3 px-1 md:px-2 text-center md:text-left"
+          class="list-reset flex flex-row md:flex-col md:mt-10 pt-3 md:py-3 px-1 md:px-2 text-center md:text-left dont-print"
         >
           <template v-for="option in options">
             <li class="mr-3 flex-1">

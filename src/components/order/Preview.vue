@@ -9,7 +9,7 @@
         <div class="flex mt-10 ml-16 text-center">
           <button type="button" @click="onPrint()">
           <span
-            class="block text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center pull-right"
+            class="block text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center pull-right mr-1"
           >
             <i class="fas fa-print mr-2"></i>
 
@@ -88,7 +88,7 @@
                 >{{ i + 1 }}. {{ unit.label }}:
               </span>
               <div class="grow text-left border-b border-black">
-                {{ data[7 + i] }}
+                {{ data[8 + i] }}
               </div>
             </div>
           </template>
@@ -101,7 +101,7 @@
                 >{{ i + 1 }}. {{ unit.label }}:
               </span>
               <div class="grow text-left border-b border-black">
-                {{ data[24 + i] }}
+                {{ data[25 + i] }}
               </div>
             </div>
           </template>

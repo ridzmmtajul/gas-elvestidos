@@ -40,9 +40,23 @@ function getLastNum(sheet_name) {
 function createOrder(data) {
   const ss = SpreadsheetApp.openById(SETTINGS.DBID);
   const orderTable = ss.getSheetByName("orders");
-  orderTable.appendRow(data);
 
-  return data;
+  const orders = getDB();
+  
+  let isExist = orders.filter(order => {
+    return (order.client_name).toLowerCase() == (data[1]).toLowerCase() &&
+    order.unit == data[2] &&
+    order.contact_num == data[3] &&
+    (order.order).toLowerCase() == (data[4]).toLowerCase();
+  });
+
+  if(isExist.length > 0){
+    return false;
+  }else{
+    orderTable.appendRow(data);
+  
+    return data;
+  }
 }
 
 function getOrderList() {
@@ -55,6 +69,26 @@ function getOrderList() {
   return orders;
 }
 
+function getStaff() {
+  const ss = SpreadsheetApp.openById(SETTINGS.DBID);
+  const sheet = ss.getSheetByName("libraries");
+  var Avals = sheet.getRange("A:A").getValues();
+  var Alast = Avals.filter(String).length;
+
+  const staff = sheet.getRange("A2:A" + Alast).getValues();
+  return staff;
+}
+
+function getUnits() {
+  const ss = SpreadsheetApp.openById(SETTINGS.DBID);
+  const sheet = ss.getSheetByName("libraries");
+  var Avals = sheet.getRange("B:B").getValues();
+  var Alast = Avals.filter(String).length;
+
+  const units = sheet.getRange("B2:B" + Alast).getValues();
+  return units;
+}
+
 function getTotalOrders() {
   const ss = SpreadsheetApp.openById(SETTINGS.DBID);
   const sheet = ss.getSheetByName("orders");
@@ -62,6 +96,10 @@ function getTotalOrders() {
   var Alast = Avals.filter(String).length;
 
   return Alast;
+}
+
+function getOrders() {
+  return getDB();
 }
 
 function checkOrderCode(qrcode) {
